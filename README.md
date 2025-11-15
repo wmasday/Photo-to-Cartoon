@@ -1,134 +1,224 @@
-# Photo-to-Cartoon Autoencoder
+# 📸➡️🎨 Photo-to-Cartoon Autoencoder
 
-A deep learning project that converts photos into cartoon-style images
-using an autoencoder architecture.
+Transform real photos into **cartoon-style images** using a deep-learning autoencoder architecture.
+This repository provides training scripts, inference tools, and a clear pipeline to reproduce results or build upon the model.
 
-## Table of Contents
+---
 
-1.  About
-2.  Features
-3.  Architecture
-4.  Getting Started
-    -   Prerequisites
-    -   Installation
-5.  Usage
-    -   Training
-    -   Inference / Testing
-6.  Results
-7.  Contributing
-8.  License
-9.  Acknowledgements
+## ✨ Features
 
-## About
+* 🧠 **Autoencoder architecture** for cartoon stylization
+* ⚡ GPU-accelerated training support
+* 🔧 Highly configurable hyperparameters
+* 💾 Save & load trained models
+* 🖼️ Simple inference workflow
+* 📦 Works with custom datasets
 
-This project implements an autoencoder model to transform real-world
-photos into cartoon-like images. The model is trained on (or can be
-adapted to) datasets consisting of paired photo and cartoon images,
-learning a latent representation that captures stylization.
+---
 
-Possible applications include artistic style transfer, photo filters,
-creative tools, and more.
+## 📁 Project Structure
 
-## Features
+```
+Photo-to-Cartoon/
+│── data/                 # Training images (user-provided)
+│── models/               # Saved autoencoder models
+│── outputs/              # Generated cartoon images
+│── train.py              # Training script
+│── infer.py              # Inference script
+│── utils/                # Preprocessing helpers
+│── README.md
+│── requirements.txt
+```
 
--   Autoencoder-based architecture for cartoon stylization
--   Easily customizable hyperparameters
--   Training and inference scripts
--   Supports saving and loading trained models
--   Simple workflow for generating cartoonized images
+---
 
-## Architecture
+## 📚 Table of Contents
 
-The system consists of:
+<details>
+<summary><strong>Click to expand</strong></summary>
 
-1.  Encoder: Compresses an input photo into a latent vector
-2.  Decoder: Reconstructs a cartoon-style image from the latent
-    representation
-3.  Loss Functions:
-    -   Reconstruction loss (MSE or L1)
-    -   Optional perceptual or style-based losses
+* About
+* Demo
+* Architecture
+* Getting Started
 
-Future extensions might include GAN-based models, VAEs, or multi-stage
-pipelines.
+  * Prerequisites
+  * Installation
+* Usage
 
-## Getting Started
+  * Training
+  * Inference
+* Results
+* Contributing
+* License
+* Acknowledgements
 
-### Prerequisites
+</details>
 
--   Python 3.7+
--   GPU recommended
--   Deep learning libraries: TensorFlow / Keras or PyTorch
--   Additional libraries: numpy, matplotlib, Pillow or OpenCV
+---
 
-### Installation
+## ℹ️ About
 
-Clone the repository:
+This project implements an **autoencoder** that learns how to convert regular photos into cartoon-like images.
+It compresses the input into a learned latent representation and reconstructs a stylized output.
 
+Common applications:
+
+* Photo filters
+* Art & design tools
+* Mobile / web creative apps
+* Dataset generation for AI projects
+
+---
+
+## 🧪 Demo
+
+(You can add images here later)
+
+| Input Photo | Cartoon Output |
+| ----------- | -------------- |
+| photo1.jpg  | cartoon1.jpg   |
+| photo2.jpg  | cartoon2.jpg   |
+
+---
+
+## 🧱 Architecture
+
+The model consists of:
+
+* **Encoder**
+  Compresses input into a compact latent vector
+* **Decoder**
+  Reconstructs cartoon-style imagery
+* **Loss Functions**
+
+  * Reconstruction loss (L1/MSE)
+  * Optional perceptual/style loss
+
+<details>
+<summary><strong>Click to view architecture diagram (if you add one)</strong></summary>
+
+*Insert architecture image here.*
+
+</details>
+
+---
+
+## 🚀 Getting Started
+
+### ✅ Prerequisites
+
+* Python 3.7+
+* TensorFlow/Keras or PyTorch (based on your implementation)
+* GPU recommended
+* pip packages:
+  `numpy`, `matplotlib`, `Pillow`, `opencv-python`, etc.
+
+### 🛠 Installation
+
+```bash
 git clone https://github.com/wmasday/Photo-to-Cartoon
 cd Photo-to-Cartoon
+```
 
-Create a virtual environment (optional):
+Create virtual environment:
 
+```bash
 python -m venv venv
-source venv/bin/activate (macOS/Linux)
-venv`Scripts`{=tex}`activate     `{=tex}(Windows)
+source venv/bin/activate    # macOS/Linux
+venv\Scripts\activate       # Windows
+```
 
 Install dependencies:
 
+```bash
 pip install -r requirements.txt
+```
 
-## Usage
+---
 
-### Training
+## 🏋️ Training
 
-Run the training script:
+```bash
+python train.py \
+  --data_dir path/to/dataset \
+  --epochs 100 \
+  --batch_size 32 \
+  --learning_rate 0.0001 \
+  --save_model_path models/cartoon_autoencoder.h5
+```
 
-python train.py
---data_dir path/to/dataset
---epochs 100
---batch_size 32
---learning_rate 0.0001
---save_model_path models/cartoon_autoencoder.h5
+Dataset format suggestion:
 
-### Inference / Testing
+```
+/dataset
+    /photos
+    /cartoons
+```
 
-Generate cartoon images using a trained model:
+---
 
-python infer.py
---model_path models/cartoon_autoencoder.h5
---input_image path/to/photo.jpg
---output_image path/to/cartoon.jpg
+## 🎨 Inference
 
-You can also run inference on a directory of images.
+Generate a cartoon image:
 
-## Results
+```bash
+python infer.py \
+  --model_path models/cartoon_autoencoder.h5 \
+  --input_image path/to/photo.jpg \
+  --output_image outputs/cartoon.jpg
+```
 
-Include before/after examples:
+To run on multiple images:
 
-  Input Photo   Generated Cartoon
-  ------------- -------------------
-  photo1.jpg    cartoon1.jpg
-  photo2.jpg    cartoon2.jpg
+```bash
+python infer.py --folder path/to/images/
+```
 
-Add images or metrics if available.
+---
 
-## Contributing
+## 📊 Results
+
+You can include:
+
+* PSNR / SSIM metrics
+* Before/after visual examples
+* Training loss curves
+
+---
+
+## 🤝 Contributing
 
 Contributions are welcome!
+To contribute:
 
-1.  Fork the repo
-2.  Create a feature branch
-3.  Commit changes
-4.  Push the branch
-5.  Open a Pull Request
+1. Fork the repo
+2. Create a feature branch
+3. Commit changes
+4. Push the branch
+5. Open a Pull Request
 
-## License
+---
 
-This project is MIT licensed. See the LICENSE file for details.
+## 📄 License
 
-## Acknowledgements
+This project is **MIT Licensed**.
 
--   Inspired by autoencoder and style-transfer research
--   Thanks to TensorFlow/PyTorch, NumPy, Pillow, and other open-source
-    tools
--   Add dataset acknowledgements if applicable
+---
+
+## 🙏 Acknowledgements
+
+* TensorFlow / PyTorch
+* NumPy, Pillow, OpenCV
+* Researchers working on style transfer and autoencoder methods
+
+---
+
+If you'd like, I can also generate:
+
+✅ Badges (Python version, license, repo stats, stars, etc.)
+✅ An SVG architecture diagram
+✅ A banner/logo for the top of the README
+✅ A fully styled README with embedded images
+
+Would you like me to enhance it further?
